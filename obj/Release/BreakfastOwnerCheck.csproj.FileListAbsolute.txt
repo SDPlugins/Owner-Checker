@@ -1,0 +1,6 @@
+C:\Users\Karl Rehm\Documents\Visual Studio 2015\Projects\Breakfast Utilities\BreakfastOwnerCheck\bin\Release\BreakfastOwnerCheck.dll
+C:\Users\Karl Rehm\Documents\Visual Studio 2015\Projects\Breakfast Utilities\BreakfastOwnerCheck\bin\Release\BreakfastOwnerCheck.pdb
+C:\Users\Karl Rehm\Documents\Visual Studio 2015\Projects\Breakfast Utilities\BreakfastOwnerCheck\obj\Release\BreakfastOwnerCheck.dll
+C:\Users\Karl Rehm\Documents\Visual Studio 2015\Projects\Breakfast Utilities\BreakfastOwnerCheck\obj\Release\BreakfastOwnerCheck.pdb
+C:\Users\Karl Rehm\Documents\Visual Studio 2015\Projects\Breakfast Utilities\BreakfastOwnerCheck\bin\Release\PlayerInfoLib.dll
+C:\Users\Karl Rehm\Documents\Visual Studio 2015\Projects\Breakfast Utilities\BreakfastOwnerCheck\obj\Release\BreakfastOwnerCheck.csprojResolveAssemblyReference.cache
