@@ -18,7 +18,7 @@ namespace SDPlugins
     {
         public static void TellInfo(IRocketPlayer caller, UnturnedPlayer owner, CSteamID ownerid, CSteamID group)
         {
-            string charname = Library.GetCharName(ownerid);
+            string charname = GetCharName(ownerid);
 
             if (Init.Instance.Configuration.Instance.SayPlayerID) UnturnedChat.Say(caller, "Owner ID: " + ownerid.ToString());
             if (owner != null)
@@ -82,7 +82,7 @@ namespace SDPlugins
                 End = strSource.IndexOf(strEnd, Start);
                 return strSource.Substring(Start, End - Start);
             }
-            else
+            else 
             {
                 return "";
             }

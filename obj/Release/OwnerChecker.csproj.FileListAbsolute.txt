@@ -1,0 +1,6 @@
+C:\Users\Karl Rehm\Documents\Visual Studio 2017\Projects\SDPlugins\Owner Checker\bin\Release\SDPlugins_Owner Checker.dll
+C:\Users\Karl Rehm\Documents\Visual Studio 2017\Projects\SDPlugins\Owner Checker\bin\Release\SDPlugins_Owner Checker.pdb
+C:\Users\Karl Rehm\Documents\Visual Studio 2017\Projects\SDPlugins\Owner Checker\bin\Release\PlayerInfoLib.dll
+C:\Users\Karl Rehm\Documents\Visual Studio 2017\Projects\SDPlugins\Owner Checker\obj\Release\OwnerChecker.csprojResolveAssemblyReference.cache
+C:\Users\Karl Rehm\Documents\Visual Studio 2017\Projects\SDPlugins\Owner Checker\obj\Release\SDPlugins_Owner Checker.dll
+C:\Users\Karl Rehm\Documents\Visual Studio 2017\Projects\SDPlugins\Owner Checker\obj\Release\SDPlugins_Owner Checker.pdb
