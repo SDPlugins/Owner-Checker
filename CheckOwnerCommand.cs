@@ -41,7 +41,7 @@ namespace SDPlugins
         public void Execute(IRocketPlayer caller, string[] command)
         {
             UnturnedPlayer player = (UnturnedPlayer)caller;
-            if (Physics.Raycast(player.Player.look.aim.position, player.Player.look.aim.forward, out hit, 10, (RayMasks.VEHICLE | RayMasks.BARRICADE | RayMasks.STRUCTURE)))
+            if (Physics.Raycast(player.Player.look.aim.position, player.Player.look.aim.forward, out hit, 10, RayMasks.BARRICADE_INTERACT))
             {
                 byte x;
                 byte y;
@@ -52,32 +52,34 @@ namespace SDPlugins
                 BarricadeRegion r;
                 StructureRegion s;
 
-                InteractableVehicle vehicle = hit.transform.gameObject.GetComponent<InteractableVehicle>();
+                Transform transform = hit.transform;
+                InteractableVehicle vehicle = transform.gameObject.GetComponent<InteractableVehicle>();
 
-                if (BarricadeManager.tryGetInfo(hit.transform, out x, out y, out plant, out index, out r))
+                if (transform.GetComponent<InteractableDoorHinge>() != null)
+                {
+                    transform = transform.parent.parent;
+                }
+
+                if (BarricadeManager.tryGetInfo(transform, out x, out y, out plant, out index, out r))
                 {
 
                     var bdata = r.barricades[index];
-
-                    UnturnedPlayer owner = UnturnedPlayer.FromCSteamID((CSteamID)bdata.owner);
-                    Library.TellInfo(caller, owner, (CSteamID)bdata.owner, (CSteamID)bdata.group);
+                    
+                    Library.TellInfo(caller, (CSteamID)bdata.owner, (CSteamID)bdata.group);
                 }
 
-                else if (StructureManager.tryGetInfo(hit.transform, out x, out y, out index, out s))
+                else if (StructureManager.tryGetInfo(transform, out x, out y, out index, out s))
                 {
                     var sdata = s.structures[index];
-
-                    UnturnedPlayer owner = UnturnedPlayer.FromCSteamID((CSteamID)sdata.owner);
-                    Library.TellInfo(caller, owner, (CSteamID)sdata.owner, (CSteamID)sdata.group);
+                    
+                    Library.TellInfo(caller, (CSteamID)sdata.owner, (CSteamID)sdata.group);
                 }
 
                 else if (vehicle != null)
                 {
                     if (vehicle.lockedOwner != CSteamID.Nil)
-                    {
-                        UnturnedPlayer owner = UnturnedPlayer.FromCSteamID(vehicle.lockedOwner);
-
-                        Library.TellInfo(caller, owner, vehicle.lockedOwner, vehicle.lockedGroup);
+                    { 
+                        Library.TellInfo(caller, vehicle.lockedOwner, vehicle.lockedGroup);
                         return;
                     }
                     UnturnedChat.Say(caller, "Vehicle does not have an owner.");

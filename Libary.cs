@@ -16,29 +16,37 @@ namespace SDPlugins
 {
     public class Library
     {
-        public static void TellInfo(IRocketPlayer caller, UnturnedPlayer owner, CSteamID ownerid, CSteamID group)
+        public static void TellInfo(IRocketPlayer caller, CSteamID ownerid, CSteamID group)
         {
-            string charname = GetCharName(ownerid);
+            string charname = null;
+            UnturnedPlayer owner = UnturnedPlayer.FromCSteamID(ownerid);
 
-            if (Init.Instance.Configuration.Instance.SayPlayerID) UnturnedChat.Say(caller, "Owner ID: " + ownerid.ToString());
-            if (owner != null)
+            bool isOnline = owner.Player != null ? owner.Player.channel != null ? true : false : false;
+
+            if (!isOnline)
+                charname = GetCharName(ownerid);
+
+            if (Init.Instance.Configuration.Instance.SayPlayerID)
+                UnturnedChat.Say(caller, "Owner ID: " + ownerid.ToString());
+
+            if (Init.Instance.Configuration.Instance.SayPlayerCharacterName)
             {
-                if (Init.Instance.Configuration.Instance.SayPlayerCharacterName) UnturnedChat.Say(caller, "Character Name: " + owner.CharacterName);
+                if (isOnline)
+                    UnturnedChat.Say(caller, "Character Name: " + owner.CharacterName);
+                else if (charname != null)
+                    UnturnedChat.Say(caller, "Character Name: " + charname);
+                else
+                    UnturnedChat.Say(caller, "Could not get character name.");
             }
-            else if (charname != null)
-            {
-                if (Init.Instance.Configuration.Instance.SayPlayerCharacterName) UnturnedChat.Say(caller, "Character Name: " + charname);
-            }
-            else
-            {
-                if (Init.Instance.Configuration.Instance.SayPlayerCharacterName) UnturnedChat.Say(caller, "Could not get character name, player is not online and PlayerInfoLib not installed.");
-            }
-            if (Init.Instance.Configuration.Instance.SayPlayerSteamName) UnturnedChat.Say(caller, "Steam Name: " + Library.SteamHTMLRequest(ownerid.ToString()));
+            if (Init.Instance.Configuration.Instance.SayPlayerSteamName)
+                UnturnedChat.Say(caller, "Steam Name: " + SteamRequest(ownerid.ToString()));
             if (group != CSteamID.Nil)
             {
-                string GroupName = Library.SteamHTMLGroupRequest(group.ToString());
-                if (Init.Instance.Configuration.Instance.SayGroupID) UnturnedChat.Say(caller, "Group ID: " + group.ToString());
-                if (Init.Instance.Configuration.Instance.SayGroupName) UnturnedChat.Say(caller, "Group Name: " + GroupName);
+                string GroupName = SteamGroupRequest(group.ToString());
+                if (Init.Instance.Configuration.Instance.SayGroupID)
+                    UnturnedChat.Say(caller, "Group ID: " + group.ToString());
+                if (Init.Instance.Configuration.Instance.SayGroupName)
+                    UnturnedChat.Say(caller, "Group Name: " + GroupName);
             }
         }
         public static string GetCharName(CSteamID id)
@@ -54,25 +62,20 @@ namespace SDPlugins
             }
             return dname;
         }
-        public static string HTTPWebClientRequest(string url)
+        public static string WebClientRequest(string url)
         {
             WebClient client = new WebClient();
 
             string text = client.DownloadString(url);
             return text;
         }
-        public static string SteamHTMLGroupRequest(string input)
+        public static string SteamGroupRequest(string input)
         {
-            string html = Library.HTTPWebClientRequest("http://steamcommunity.com/gid/" + input + "/memberslistxml?xml=1");
-            string data = Library.getBetween(html, "<groupName>", "</groupName>").Replace(" ", "");
+            string html = WebClientRequest("http://steamcommunity.com/gid/" + input + "/memberslistxml?xml=1");
+            string data = getBetween(html, "<groupName>", "</groupName>").Replace(" ", "");
             data = data.Replace("<![CDATA[", "").Replace("]]>", "");
             return data;
         }
-        public static void UnturnedHTMLRequest(UnturnedPlayer player, string url, string desc)
-        {
-            player.Player.channel.send("askBrowserRequest", player.CSteamID, SDG.Unturned.ESteamPacket.UPDATE_RELIABLE_BUFFER, desc, url);     
-        }
-
         public static string getBetween(string strSource, string strStart, string strEnd)
         {
             int Start, End;
@@ -87,10 +90,10 @@ namespace SDPlugins
                 return "";
             }
         }
-        public static string SteamHTMLRequest(string input)
+        public static string SteamRequest(string input)
         {
-            string html = Library.HTTPWebClientRequest("http://steamcommunity.com/profiles/" + input + "?xml=1");
-            string data = Library.getBetween(html, "<steamID>", "</steamID>").Replace(" ", "");
+            string html = WebClientRequest("http://steamcommunity.com/profiles/" + input + "?xml=1");
+            string data = getBetween(html, "<steamID>", "</steamID>").Replace(" ", "");
             data = data.Replace("<![CDATA[", "").Replace("]]>", "");
             return data;
         }
