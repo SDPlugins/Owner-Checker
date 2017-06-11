@@ -14,14 +14,14 @@ namespace SDPlugins
         protected override void Load()
         {
             Instance = this;
-            Rocket.Core.Logging.Logger.Log("[SDPlugins] Owner check loaded!");
+            Rocket.Core.Logging.Logger.LogWarning("[SDPlugins] Owner check loaded!");
             if (Configuration.Instance.usePlayerInfoLib)
             {
-                Rocket.Core.Logging.Logger.Log("[SDPlugins] Player Info Lib will be used!");
+                Rocket.Core.Logging.Logger.LogWarning("[SDPlugins] Player Info Lib will be used!");
             }
             else
             {
-                Rocket.Core.Logging.Logger.Log("[SDPlugins] Player Info Lib will not be used!");
+                Rocket.Core.Logging.Logger.LogWarning("[SDPlugins] Player Info Lib will not be used!");
             }
         }
         protected override void Unload()

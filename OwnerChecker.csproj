@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FindCommand.cs" />
     <Compile Include="Init.cs" />
     <Compile Include="CheckOwnerCommand.cs" />
     <Compile Include="Libary.cs" />

@@ -54,11 +54,11 @@ namespace SDPlugins
             string dname = null;
             if (Init.Instance.Configuration.Instance.usePlayerInfoLib)
             {
-                Init.ExecuteDependencyCode("PlayerInfoLib", (IRocketPlugin plugin) =>
+                if (Init.IsDependencyLoaded("PlayerInfoLib"))
                 {
                     PlayerInfoLibrary.PlayerData data = PlayerInfoLibrary.PlayerInfoLib.Database.QueryById(id, true);
                     dname = data.CharacterName;
-                });
+                }
             }
             return dname;
         }

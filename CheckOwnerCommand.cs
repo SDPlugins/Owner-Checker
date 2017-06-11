@@ -81,7 +81,7 @@ namespace SDPlugins
                     { 
                         Library.TellInfo(caller, vehicle.lockedOwner, vehicle.lockedGroup);
                         return;
-                    }
+                    }   
                     UnturnedChat.Say(caller, "Vehicle does not have an owner.");
                 }
             }
