@@ -4,3 +4,10 @@ C:\Users\CORY\Documents\GitHub\Owner-Checker\bin\Debug\PlayerInfoLib.dll
 C:\Users\CORY\Documents\GitHub\Owner-Checker\obj\Debug\OwnerChecker.csprojResolveAssemblyReference.cache
 C:\Users\CORY\Documents\GitHub\Owner-Checker\obj\Debug\SDPlugins_Owner Checker.dll
 C:\Users\CORY\Documents\GitHub\Owner-Checker\obj\Debug\SDPlugins_Owner Checker.pdb
+C:\Users\CORY\Documents\GitHub\Owner-Checker\bin\Debug\Pathfinding.JsonFx.dll
+C:\Users\CORY\Documents\GitHub\Owner-Checker\bin\Debug\Pathfinding.Ionic.Zip.Reduced.dll
+C:\Users\CORY\Documents\GitHub\Owner-Checker\bin\Debug\Pathfinding.ClipperLib.dll
+C:\Users\CORY\Documents\GitHub\Owner-Checker\bin\Debug\UnityEngine.UI.dll
+C:\Users\CORY\Documents\GitHub\Owner-Checker\bin\Debug\Pathfinding.Poly2Tri.dll
+C:\Users\CORY\Documents\GitHub\Owner-Checker\bin\Debug\Newtonsoft.Json.dll
+C:\Users\CORY\Documents\GitHub\Owner-Checker\bin\Debug\UnityEngine.CrashLog.dll
